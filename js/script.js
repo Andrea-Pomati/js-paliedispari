@@ -14,15 +14,93 @@ Consigli del giorno
  se funziona allora andiamo avanti.
 ) */
 
-//Palindroma
-//chiedere all'utente di inserire una parola dentro un input
+// chiedo all'utente di inserire una parola: collego l'input html alla variabile parola
+let parola = document.getElementById("parola");
+console.log("La parola inserita è", parola);
 
-// al click del bottone dire se è palindroma o no
+// output su pagina:
 
-//collego la variabile al documento html nel campo input
-let parolaEl = document.getElementById("parola");
-//collego il bottone html
-let buttonEl = document.getElementById("button")
+// creo bottone per il click: collego il bottone html con una variabile button
+let button = document.querySelector("button");
 
+// aggiungo il click al button
+button.addEventListener("click", 
+    function(){
+        
+        let risultato = parPalindroma(parola.value);
+        document.getElementById("risultato").innerHTML = `La parola "${parola.value}" da te inserita ${risultato}.`;
+
+        parola.value = "";
+       
+    }
+);
+
+
+// creo la funzione per capire se è palindroma:
+function parPalindroma(word){
+    // divido la parola in sottostringhe:
+    let parDivisa = word.split("");
+    console.log("La parola divisa è:", parDivisa);
+
+    // inverto le lettere:
+    let parInvertita = parDivisa.reverse();
+    console.log("La parola invertita è", parInvertita);
+
+    // riunisco le lettere:
+    let parFinale = parInvertita.join("");
+    console.log("La parola finale è:", parFinale);
+
+    // verifico se è palindroma oppure no:
+    if(parFinale === parola.value){
+        return "è palindroma"
+    }else{
+        return "non è palindroma"
+    };
+}
+
+
+//-------------------------------------------------------------------------------------------
+
+// PARI E DISPARI 
+
+let inputUser = prompt('Scegli Pari o Dispari');
+let userNumber = parseInt(prompt('Scegli un numero da 1 a 5'));
+
+function randomNum (min, max) {
+    let numRandom = Math.floor(Math.random() * (max - min + 1) ) + min;
+    return numRandom;
+}
+
+let numRand = randomNum(1,5);
+console.log(`Il numero random è ${numRand}`);
+
+function sum (x,y) {
+    let sum = x + y;
+    return sum;
+}
+
+let sumValue = sum(userNumber, numRand);
+
+console.log(`Il valore della somma è ${sumValue}`);
+
+function checkParidis () {
+    let control = '';
+    if (sumValue % 2 == 0) {
+        control = 'pari';
+        return control
+    } else {
+        control = 'dispari';
+        return control
+    }
+}
+
+console.log(checkParidis());
+
+if (userNumber = checkParidis()) {
+    console.log('utente ha vinto');
+
+} else {
+    console.log('utente ha perso');
+}
 
 
